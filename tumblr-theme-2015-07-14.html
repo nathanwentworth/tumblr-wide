@@ -53,6 +53,10 @@
                 margin-bottom: 16px;
                 border-radius: 6px;
             }
+            .photo .exif {
+                font-size: .75em;
+                float:right;
+            }
             img {
                 max-width: 100%;
                 width: auto;
@@ -89,6 +93,11 @@
                 {/block:Text}{block:Photo}
                     <div class="post photo">
                         <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
+                        {block:Exif}
+                        <div class='exif'>
+                            {block:Camera}{Camera}{/block:Camera} - {block:Aperture}{Aperture}{/block:Aperture} - {block:Exposure}{Exposure}{/block:Exposure} - {block:FocalLength}{FocalLength}{/block:FocalLength}
+                        </div>
+                        {/block:Exif}
 
                         {block:Caption}
                             <div class="caption">{Caption}</div>
