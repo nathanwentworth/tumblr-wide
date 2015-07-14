@@ -25,7 +25,10 @@
                 background: #E6E6E6;
                 text-shadow: none;
             }
-
+            h2 {
+                padding: 0;
+                margin: 0;
+            }
             header {
                 height: 200px;
                 width: 100%;
@@ -37,10 +40,18 @@
                 width: 90%;
             }
             header p {
+                padding-top:0;
+            }
+            header p:first-child {
                 padding-top: 45px;
             }
             header div {
                 padding-top: 45px;
+            }
+            header .avatar {
+                float: right;
+                height: 100px;
+                width: auto;
             }
             #posts {
                 margin: auto;
@@ -53,9 +64,19 @@
                 margin-bottom: 16px;
                 border-radius: 6px;
             }
+            .text .body {
+                max-width:640px;
+                margin:auto;
+            }
             .photo .exif {
                 font-size: .75em;
                 float:right;
+            }
+            .quote .source {
+                padding-left: 45px;
+            }
+            .quote h2 {
+                padding-bottom: 1em;
             }
             img {
                 max-width: 100%;
@@ -69,26 +90,41 @@
             a:visited {color: #3F3F3F;}
             a:hover {color: #676767;}
             a:active {color: #676767;}
+            
+            
+            {CustomCSS}
         </style>
     </head>
     <body>
         
         <header>
             <div>
+                {block:ShowAvatar}
+                    <img class='avatar' src="{PortraitURL-128}" />
+                {/block:ShowAvatar}
+            
                 <a href="{BlogURL}">{Title}</a>
     
+                {block:ShowDescription}
                 {block:Description}
                     <p id="description">{Description}</p>
                 {/block:Description}
+                {/block:ShowDescription}
+                
+                {block:HasPages}
+                    {block:Pages}<a href="{URL}">{Label}</a> / {/block:Pages}
+                {/block:HasPages}<a href="/archive">Archive</a>
             </div>
         </header>
 
         <div id="posts">
             {block:Posts}{block:Text}
                     <div class="post text">
+                        <div class='body'>
                         {block:Title}
                             <h3><a href="{Permalink}">{Title}</a></h3>
-                        {/block:Title}{Body}
+                        {/block:Title}
+                        {Body}</div>
                     </div>
                 {/block:Text}{block:Photo}
                     <div class="post photo">
@@ -119,10 +155,10 @@
                     </div>
                 {/block:Photoset}{block:Quote}
                     <div class="post quote">
-                        "{Quote}"
+                        <h2>"{Quote}"</h2>
 
                         {block:Source}
-                            <div class="source">{Source}</div>
+                            <div class="source">→ {Source}</div>
                         {/block:Source}
                     </div>
                 {/block:Quote}{block:Link}
@@ -151,7 +187,7 @@
                     </div>
                 {/block:Chat}{block:Video}
                     <div class="post video">
-                        {Video-500}{block:Caption}
+                        {Video-700}{block:Caption}
                             <div class="caption">{Caption}</div>
                         {/block:Caption}
                     </div>
@@ -170,8 +206,6 @@
             {/block:PreviousPage}{block:NextPage}
                 <a href="{NextPage}">Next &#187;</a>
             {/block:NextPage}
-
-            <a href="/archive">Archive</a>
         </p>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:800,400' rel='stylesheet' type='text/css'>
     </body>
