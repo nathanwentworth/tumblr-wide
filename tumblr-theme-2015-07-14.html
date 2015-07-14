@@ -1,0 +1,169 @@
+<html>
+    <head>
+        <title>{Title}</title>
+        <link rel="shortcut icon" href="{Favicon}">
+        <link rel="alternate" type="application/rss+xml" href="{RSS}">
+        {block:Description}
+            <meta name="description" content="{MetaDescription}" />
+        {/block:Description}
+        <style>
+            body {
+                background: #fff;
+                color: #222;
+                font-size: 1em;
+                font-family: 'Open Sans', sans-serif;
+                line-height: 140%;
+                padding: 0;
+                margin: 0;
+            }
+            ::-moz-selection {
+                background: #E6E6E6;
+                text-shadow: none;
+            }
+            
+            ::selection {
+                background: #E6E6E6;
+                text-shadow: none;
+            }
+
+            header {
+                height: 200px;
+                width: 100%;
+                background: #ffffff;
+            }
+            header div {
+                margin: auto;
+                max-width: 1280px;
+                width: 90%;
+            }
+            header p {
+                padding-top: 45px;
+            }
+            header div {
+                padding-top: 45px;
+            }
+            #posts {
+                margin: auto;
+                width: 90%;
+                max-width: 1280px;
+            }
+            .post {
+                background: #eee;
+                padding: 16px;
+                margin-bottom: 16px;
+                border-radius: 6px;
+            }
+            img {
+                max-width: 100%;
+                width: auto;
+                height: auto;
+            }
+            a {
+                text-decoration: none;
+            }
+            a:link {color: #3F3F3F;}
+            a:visited {color: #3F3F3F;}
+            a:hover {color: #676767;}
+            a:active {color: #676767;}
+        </style>
+    </head>
+    <body>
+        
+        <header>
+            <div>
+                <a href="{BlogURL}">{Title}</a>
+    
+                {block:Description}
+                    <p id="description">{Description}</p>
+                {/block:Description}
+            </div>
+        </header>
+
+        <div id="posts">
+            {block:Posts}{block:Text}
+                    <div class="post text">
+                        {block:Title}
+                            <h3><a href="{Permalink}">{Title}</a></h3>
+                        {/block:Title}{Body}
+                    </div>
+                {/block:Text}{block:Photo}
+                    <div class="post photo">
+                        <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
+
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                {/block:Photo}{block:Panorama}
+                    <div class="post panorama">
+                        {LinkOpenTag}
+                            <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"/>
+                        {LinkCloseTag}{block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                {/block:Panorama}{block:Photoset}
+                    <div class="post photoset">
+                        {Photoset-500}{block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                {/block:Photoset}{block:Quote}
+                    <div class="post quote">
+                        "{Quote}"
+
+                        {block:Source}
+                            <div class="source">{Source}</div>
+                        {/block:Source}
+                    </div>
+                {/block:Quote}{block:Link}
+                    <div class="post link">
+                        <a href="{URL}" class="link" {Target}>{Name}</a>
+
+                        {block:Description}
+                            <div class="description">{Description}</div>
+                        {/block:Description}
+                    </div>
+                {/block:Link}{block:Chat}
+                    <div class="post chat">
+                        {block:Title}
+                            <h3><a href="{Permalink}">{Title}</a></h3>
+                        {/block:Title}
+
+                        <ul class="chat">
+                            {block:Lines}
+                                <li class="{Alt} user_{UserNumber}">
+                                    {block:Label}
+                                        <span class="label">{Label}</span>
+                                    {/block:Label}{Line}
+                                </li>
+                            {/block:Lines}
+                        </ul>
+                    </div>
+                {/block:Chat}{block:Video}
+                    <div class="post video">
+                        {Video-500}{block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                {/block:Video}{block:Audio}
+                    <div class="post audio">
+                        {AudioEmbed}{block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                {/block:Audio}{/block:Posts}
+        </div>
+
+        <p id="footer">
+            {block:PreviousPage}
+                <a href="{PreviousPage}">&#171; Previous</a>
+            {/block:PreviousPage}{block:NextPage}
+                <a href="{NextPage}">Next &#187;</a>
+            {/block:NextPage}
+
+            <a href="/archive">Archive</a>
+        </p>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:800,400' rel='stylesheet' type='text/css'>
+    </body>
+</html>
